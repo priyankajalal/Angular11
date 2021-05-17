@@ -1,0 +1,58 @@
+<div class="ui-g ui-fluid">
+<div class="card">
+  <!--<h5>Filter Menu</h5>-->
+  <p-table #dt1 [value]="employees" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+           [rowsPerPageOptions]="[10,25,50]"  styleClass="p-datatable-employees p-datatable-gridlines"
+           [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+           [globalFilterFields]="['firstname','lastname']"
+
+           >
+
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex">
+        <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+        <span class="p-input-icon-left p-ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+                </span>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th>
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Id
+            <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
+          </div>
+        </th>
+        <th>
+          <div class="p-d-flex p-jc-between p-ai-center">
+            First Name
+            <p-columnFilter type="text" field="firstname" display="menu"></p-columnFilter>
+          </div>
+        </th>
+        <th>
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Last Name
+            <p-columnFilter type="text" field="lastname" display="menu"></p-columnFilter>
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-employee>
+      <tr>
+        <td>
+          {{employee.id}}
+        </td>
+        <td>
+          {{employee.firstname}}
+        </td>
+        <td>
+          {{employee.lastname}}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+</div>
